@@ -24,4 +24,8 @@ sagaMiddleware.run(function* () {
     // BUG: this doesn't get called when the batch is dispatched from the saga above
     console.log('got decrement');
   });
+
+  yield takeEvery('*', function* (action) {
+    console.log('logging all actions: got action', action);
+  });
 });
