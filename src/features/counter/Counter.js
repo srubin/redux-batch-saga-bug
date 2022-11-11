@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   decrement,
   increment,
-  incrementByAmount,
-  incrementAsync,
-  incrementIfOdd,
   selectCount,
 } from './counterSlice';
 import styles from './Counter.module.css';
@@ -19,18 +16,18 @@ export function Counter() {
       <div className={styles.row}>
         <button
           className={styles.button}
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
+          aria-label="Decrement value (2x)"
+          onClick={() => dispatch([decrement(), decrement()])}
         >
-          -
+          - 2x (batch)
         </button>
         <span className={styles.value}>{count}</span>
         <button
           className={styles.button}
-          aria-label="Increment value"
+          aria-label="Increment value (then 2x decrement)"
           onClick={() => dispatch(increment())}
         >
-          +
+          + (then dec 2x in batch from saga)
         </button>
       </div>
     </div>
