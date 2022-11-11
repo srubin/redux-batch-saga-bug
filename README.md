@@ -1,3 +1,23 @@
+This demonstrates a bug with redux-batch and redux-saga. The issue is that batch actions dispatched from sagas do not get processed as individual actions in the saga.
+
+To repro:
+
+```
+npm install
+npm start
+```
+
+Open the console in the web app.
+
+Click the increment button. 
+
+Observe that a saga handles the increment, then dispatches a batch of 2 decrements. These decrements are handled by the reducer successfully, but then the saga does not handle the decrements. The saga does, however, indicate that it received a batch action.
+
+A batch action dispatched from a react component (i.e., click the decrement 2x button) does get handled by sagas as expected.
+
+
+----
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
